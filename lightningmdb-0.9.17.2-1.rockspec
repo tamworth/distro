@@ -1,16 +1,16 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "Lightningmdb"
-version = "0.9.17.1-2"
+version = "0.9.17.2-1"
 -- LuaDist source
 source = {
-  tag = "0.9.17.1-2",
+  tag = "0.9.17.2-1",
   url = "git://github.com/LuaDist2/lightningmdb.git"
 }
 -- Original source
 -- source = {
---    dir = "lightningmdb-0.9.17.1-2",
---    url = "https://github.com/shmul/lightningmdb/archive/0.9.17.1-2.zip"
+--    dir = "lightningmdb-"..version,
+--    url = "https://github.com/shmul/lightningmdb/archive/"..version..".zip"
 -- }
 description = {
    summary = "A thin wrapper around OpenLDAP Lightning Memory-Mapped Database (LMDB).",
