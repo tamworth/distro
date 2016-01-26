@@ -1,11 +1,11 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "Lightningmdb"
-version = "0.9.17.2-1"
+version = "0.9.17.3-1"
 -- LuaDist source
 source = {
-  tag = "0.9.17.2-1",
-  url = "git://github.com/LuaDist2/lightningmdb.git"
+  url = "git://github.com/LuaDist2/lightningmdb.git",
+  tag = "0.9.17.3-1"
 }
 -- Original source
 -- source = {
