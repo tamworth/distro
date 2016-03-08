@@ -32,7 +32,7 @@
         branch = master
 [submodule "pkg/torch"]
 	path = pkg/torch
-	url = https://github.com/torch/torch7.git
+	url = https://github.com/borisfom/torch7.git
 [submodule "pkg/sundown"]
 	path = pkg/sundown
 	url = https://github.com/torch/sundown-ffi.git
@@ -108,7 +108,11 @@
         branch = master
 [submodule "extra/cunnx"]
 	path = extra/cunnx
+<<<<<<< HEAD
 	url = https://github.com/borisfom/cunnx.git
+=======
+	url = https://github.com/nicholas-leonard/cunnx.git
+>>>>>>> de0ceab42259922cf31e48edd33abb8dcd7f6606
         branch = master
 [submodule "extra/iTorch"]
 	path = extra/iTorch
