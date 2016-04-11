@@ -1,3 +1,8 @@
+torch7 (0.9.95-7+cuda8.0) trusty; urgency=medium
+  * Fix TemporalConvolution output size
+
+ -- Boris Fomitchev <bfomitchev@nvidia.com>  Mon, 11 Apr 2016 15:18:00 -0800
+
 torch7 (0.9.95-5+cuda8.0) trusty; urgency=medium
   * Rebuilt with /usr/local tree removed
   * Fix failing SpatialFullConvolution test
