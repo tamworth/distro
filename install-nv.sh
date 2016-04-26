@@ -10,10 +10,13 @@ BUILD_DIR=${THIS_DIR}/build
 
 TORCH_LUA_VERSION=${TORCH_LUA_VERION:-"LUAJIT21"} # by default install LUAJIT21
 
-while getopts 'absvnh:' x; do
+while getopts 'aAbsvnh:' x; do
     case "$x" in
         a)
-            export CUDA_ARCH_NAME=All
+            export CUDA_ARCH_BIN="3.0 3.7 5.0"
+            ;;
+        A)
+            export CUDA_ARCH_BIN="5.0 6.0 6.2"
             ;;
         h)
             echo "usage: $0
@@ -164,8 +167,8 @@ cd ${THIS_DIR}/pkg/optim     && $LUAROCKS make optim-1.0.5-0.rockspec       || e
 if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
 then
     echo "Found CUDA on your machine. Installing CUDA packages"
-    cd ${THIS_DIR}/extra/cutorch  && $LUAROCKS  make rocks/cutorch-scm-1.rockspec || exit 1
-    cd ${THIS_DIR}/extra/cunn     && $LUAROCKS  make rocks/cunn-scm-1.rockspec    || exit 1
+    cd ${THIS_DIR}/extra/cutorch  && $LUAROCKS  make CUDA_ARCH_BIN="${CUDA_ARCH_BIN}" rocks/cutorch-scm-1.rockspec || exit 1
+    cd ${THIS_DIR}/extra/cunn     && $LUAROCKS  make CUDA_ARCH_BIN="${CUDA_ARCH_BIN}" rocks/cunn-scm-1.rockspec    || exit 1
 fi
 
 # Optional packages
@@ -191,6 +194,8 @@ cd ${THIS_DIR}/extra/totem          && $LUAROCKS make rocks/totem-0-0.rockspec |
 cd ${THIS_DIR}/extra/hdf5           && $LUAROCKS make hdf5-0-0.rockspec || exit 1
 #NCCL (experimental) support
 cd ${THIS_DIR}/extra/nccl         && $LUAROCKS make nccl-scm-1.rockspec || exit 1
+#Torch Data Structures
+# cd ${THIS_DIR}/extra/tds         && $LUAROCKS make rocks/tds-scm-1.rockspec || exit 1
 
 # Optional CUDA packages
 if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
@@ -201,11 +206,6 @@ then
 fi
 
 export PATH=$OLDPATH # Restore anaconda distribution if we took it out.
-if [[ `uname` == "Darwin" ]]; then
-    cd ${THIS_DIR}/extra/iTorch         && $LUAROCKS make OPENSSL_DIR=/usr/local/opt/openssl/
-else
-    cd ${THIS_DIR}/extra/iTorch         && $LUAROCKS make
-fi
 
 
 if [[ $SKIP_RC == 1 ]]; then
