@@ -1,3 +1,7 @@
+torch7 (0.9.99-1+cuda7.5) trusty; urgency=medium
+  * Picked up latest (merged for R5) Torch ToT
+  * Fixed hdf5 dependencies
+
 torch7 (0.9.98-1+cuda7.5) trusty; urgency=medium
   * Picked up latest Torch ToT
   * Notably: Set up for latest CuDNN GA
