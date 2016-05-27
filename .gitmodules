@@ -24,11 +24,11 @@
         branch = master
 [submodule "extra/cunn"]
 	path = extra/cunn
-	url = https://github.com/borisfom/cunn.git
+	url = https://github.com/torch/cunn.git
         branch = master
 [submodule "extra/cutorch"]
 	path = extra/cutorch
-	url = https://github.com/borisfom/cutorch.git
+	url = https://github.com/torch/cutorch.git
         branch = master
 [submodule "pkg/torch"]
 	path = pkg/torch
@@ -72,8 +72,7 @@
         branch = master
 [submodule "extra/cudnn"]
 	path = extra/cudnn
-	url = https://github.com/borisfom/cudnn.torch.git
-        branch = R5_up
+	url = https://github.com/soumith/cudnn.torch.git
 [submodule "exe/trepl"]
 	path = exe/trepl
 	url = https://github.com/torch/trepl.git
@@ -108,7 +107,7 @@
         branch = master
 [submodule "extra/cunnx"]
 	path = extra/cunnx
-	url = https://github.com/borisfom/cunnx.git
+        url = https://github.com/nicholas-leonard/cunnx.git
         branch = master
 [submodule "extra/graph"]
 	path = extra/graph
