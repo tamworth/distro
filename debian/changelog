@@ -1,6 +1,7 @@
 torch7 (0.9.99-1+cuda7.5) trusty; urgency=medium
   * Picked up latest (merged for R5) Torch ToT
   * Fixed hdf5 dependencies
+  * Changed set of gencodes as per latest recommendations
 
  -- Boris Fomitchev <bfomitchev@nvidia.com>  Mon, 25 Apr 2016 21:18:00 -0800
 

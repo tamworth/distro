@@ -13,10 +13,10 @@ TORCH_LUA_VERSION=${TORCH_LUA_VERION:-"LUAJIT21"} # by default install LUAJIT21
 while getopts 'aAbsvnh:' x; do
     case "$x" in
         a)
-            export TORCH_CUDA_ARCH_LIST="3.0 3.5 3.7 5.0 5.2 5.0+PTX 5.2+PTX"
+            export TORCH_CUDA_ARCH_LIST="3.0 3.5 5.0 5.2 5.2+PTX"
             ;;
         A)
-            export TORCH_CUDA_ARCH_LIST="5.0 5.2 6.0 6.2 6.0+PTX 6.2+PTX"
+            export TORCH_CUDA_ARCH_LIST="3.0 3.5 5.0 5.2 6.0 6.0+PTX"
 
             ;;
         h)
