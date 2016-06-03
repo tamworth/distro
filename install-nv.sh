@@ -16,7 +16,7 @@ while getopts 'aAbsvnh:' x; do
             export TORCH_CUDA_ARCH_LIST="3.0 3.5 5.0 5.2 5.2+PTX"
             ;;
         A)
-            export TORCH_CUDA_ARCH_LIST="3.0 3.5 5.0 5.2 6.0 6.0+PTX"
+            export TORCH_CUDA_ARCH_LIST="3.0 3.5 5.0 5.2 6.0 6.1 6.1+PTX"
 
             ;;
         h)
