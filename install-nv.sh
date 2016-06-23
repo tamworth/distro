@@ -106,12 +106,13 @@ export CMAKE_INSTALL_SUBDIR="share/cmake/torch"
 path_to_nvcc=$(which nvcc)
 path_to_nvidiasmi=$(which nvidia-smi)
 
+
 if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
 then
-    echo "Found CUDA on your machine. Installing FindCUDA module to work around .cu bug in CMake 2.8/3.5"
-    cd ${THIS_DIR}/extra/FindCUDA && \
-(cmake -E make_directory build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${CMAKE_INSTALL_PREFIX}" \
-    -DCMAKE_INSTALL_SUBDIR="${CMAKE_INSTALL_SUBDIR}" && make install) && echo "FindCuda installed" || exit 1
+    echo "Found CUDA on your machine. Installing CMake 3.6 modules to get up-to-date FindCUDA"
+    cd ${THIS_DIR}/cmake/3.6 && \
+(cmake -E make_directory build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
+        && make install) && echo "FindCuda bits of CMake 3.6 installed" || exit 1
 fi
 
 #

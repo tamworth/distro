@@ -130,9 +130,6 @@
 [submodule "extra/lua-cjson"]
 	path = extra/lua-cjson
 	url = https://github.com/mpx/lua-cjson
-[submodule "extra/FindCUDA"]
-	path = extra/FindCUDA
-	url = https://github.com/borisfom/FindCUDA.git
 [submodule "extra/lmdb"]
 	path = extra/lmdb
 	url = https://github.com/LuaDist2/lightningmdb.git
