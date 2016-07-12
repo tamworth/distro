@@ -197,7 +197,7 @@ cd ${THIS_DIR}/extra/hdf5           && $LUAROCKS make hdf5-0-0.rockspec || exit 
 #NCCL (experimental) support
 cd ${THIS_DIR}/extra/nccl         && $LUAROCKS make nccl-scm-1.rockspec || exit 1
 #Torch Data Structures
-# cd ${THIS_DIR}/extra/tds         && $LUAROCKS make rocks/tds-scm-1.rockspec || exit 1
+cd ${THIS_DIR}/extra/tds         && $LUAROCKS make rocks/tds-scm-1.rockspec || exit 1
 
 # Optional CUDA packages
 if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
