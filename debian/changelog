@@ -1,3 +1,10 @@
+torch7 (0.9.99-2+cuda8.0) trusty; urgency=medium
+  * Picked up latest Torch ToT
+  * Merged outstanding PRs for complete fp16 support
+  * Removed extra node and npm dependencies
+
+ -- Boris Fomitchev <bfomitchev@nvidia.com>  Mon, 11 Jul 2016 12:18:00 -0800
+
 torch7 (0.9.99-1+cuda8.0) trusty; urgency=medium
   * Picked up latest (merged for R5) Torch ToT
   * Fixed hdf5 dependencies
