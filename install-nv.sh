@@ -166,15 +166,11 @@ cd ${THIS_DIR}/extra/nngraph && $LUAROCKS make                              || e
 cd ${THIS_DIR}/pkg/image     && $LUAROCKS make image-1.1.alpha-0.rockspec   || exit 1
 cd ${THIS_DIR}/pkg/optim     && $LUAROCKS make optim-1.0.5-0.rockspec       || exit 1
 
-if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
-then
-    echo "Found CUDA on your machine. Installing CUDA packages for ${CUDA_SELECT_NVCC_ARCH_TARGETS}"
-    cd ${THIS_DIR}/extra/cutorch  && $LUAROCKS  make CUDA_SELECT_NVCC_ARCH_TARGETS="${CUDA_SELECT_NVCC_ARCH_TARGETS}" rocks/cutorch-scm-1.rockspec || exit 1
-    cd ${THIS_DIR}/extra/cunn     && $LUAROCKS  make CUDA_SELECT_NVCC_ARCH_TARGETS="${CUDA_SELECT_NVCC_ARCH_TARGETS}" rocks/cunn-scm-1.rockspec    || exit 1
-fi
 
 # Optional packages
 echo "Installing optional Torch packages"
+#Torch Data Structures
+# cd ${THIS_DIR}/extra/tds            && $LUAROCKS make rocks/tds-scm-1.rockspec || exit 1
 cd ${THIS_DIR}/pkg/gnuplot          && $LUAROCKS make rocks/gnuplot-scm-1.rockspec || exit 1
 cd ${THIS_DIR}/exe/env              && $LUAROCKS make || exit 1
 cd ${THIS_DIR}/extra/nnx            && $LUAROCKS make nnx-0.1-1.rockspec || exit 1
@@ -196,8 +192,13 @@ cd ${THIS_DIR}/extra/totem          && $LUAROCKS make rocks/totem-0-0.rockspec |
 cd ${THIS_DIR}/extra/hdf5           && $LUAROCKS make hdf5-0-0.rockspec || exit 1
 #NCCL (experimental) support
 cd ${THIS_DIR}/extra/nccl         && $LUAROCKS make nccl-scm-1.rockspec || exit 1
-#Torch Data Structures
-cd ${THIS_DIR}/extra/tds         && $LUAROCKS make rocks/tds-scm-1.rockspec || exit 1
+
+if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
+then
+    echo "Found CUDA on your machine. Installing CUDA packages for ${CUDA_SELECT_NVCC_ARCH_TARGETS}"
+    cd ${THIS_DIR}/extra/cutorch  && $LUAROCKS  make CUDA_SELECT_NVCC_ARCH_TARGETS="${CUDA_SELECT_NVCC_ARCH_TARGETS}" rocks/cutorch-scm-1.rockspec || exit 1
+    cd ${THIS_DIR}/extra/cunn     && $LUAROCKS  make CUDA_SELECT_NVCC_ARCH_TARGETS="${CUDA_SELECT_NVCC_ARCH_TARGETS}" rocks/cunn-scm-1.rockspec    || exit 1
+fi
 
 # Optional CUDA packages
 if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
