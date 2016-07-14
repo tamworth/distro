@@ -1,3 +1,8 @@
+torch7 (0.9.99-3+cuda8.0) trusty; urgency=medium
+  * Rebuilt with CUDA 8.0 RC
+
+ -- Boris Fomitchev <bfomitchev@nvidia.com>  Thu, 14 Jul 2016 15:22:00 -0800
+
 torch7 (0.9.99-2+cuda8.0) trusty; urgency=medium
   * Picked up latest Torch ToT
   * Merged outstanding PRs for complete fp16 support
