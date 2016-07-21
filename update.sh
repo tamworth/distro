@@ -34,5 +34,4 @@ fi
 done
 
 cd "${THIS_DIR}"
-pwd
-git status
+./commit.sh
