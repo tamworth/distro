@@ -1,3 +1,8 @@
+torch7 (0.9.99-4+cuda8.0) trusty; urgency=medium
+  * Added CCN2 and TDS submodules
+
+ -- Boris Fomitchev <bfomitchev@nvidia.com>  Thu, 14 Jul 2016 15:22:00 -0800
+
 torch7 (0.9.99-3+cuda8.0) trusty; urgency=medium
   * Rebuilt with CUDA 8.0 RC
 
