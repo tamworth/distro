@@ -106,10 +106,6 @@
 	path = exe/env
 	url = https://github.com/torch/env.git
         branch = master
-[submodule "extra/cuda-convnet2.torch"]
-	path = extra/cuda-convnet2.torch
-	url = https://github.com/soumith/cuda-convnet2.torch.git
-        branch = master
 [submodule "extra/cunnx"]
 	path = extra/cunnx
         url = https://github.com/nicholas-leonard/cunnx.git
@@ -162,3 +158,7 @@
 	path = extra/tds
 	url = https://github.com/torch/tds.git
         branch = master
+[submodule "extra/ccn2"]
+	path = extra/ccn2
+	url = https://github.com/borisfom/cuda-convnet2.torch.git
+	branch = master

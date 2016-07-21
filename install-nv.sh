@@ -170,7 +170,7 @@ cd ${THIS_DIR}/pkg/optim     && $LUAROCKS make optim-1.0.5-0.rockspec       || e
 # Optional packages
 echo "Installing optional Torch packages"
 #Torch Data Structures
-# cd ${THIS_DIR}/extra/tds            && $LUAROCKS make rocks/tds-scm-1.rockspec || exit 1
+cd ${THIS_DIR}/extra/tds            && $LUAROCKS make rocks/tds-scm-1.rockspec || exit 1
 cd ${THIS_DIR}/pkg/gnuplot          && $LUAROCKS make rocks/gnuplot-scm-1.rockspec || exit 1
 cd ${THIS_DIR}/exe/env              && $LUAROCKS make || exit 1
 cd ${THIS_DIR}/extra/nnx            && $LUAROCKS make nnx-0.1-1.rockspec || exit 1
@@ -206,6 +206,8 @@ then
     echo "Found CUDA on your machine. Installing optional CUDA packages"
     cd ${THIS_DIR}/extra/cudnn   && $LUAROCKS make cudnn-scm-1.rockspec || exit 1
     cd ${THIS_DIR}/extra/cunnx   && $LUAROCKS make rocks/cunnx-scm-1.rockspec || exit 1
+    # cuda-convnet2
+    cd ${THIS_DIR}/extra/ccn2    && $LUAROCKS make  ccn2-scm-1.rockspec || exit 1
 fi
 
 export PATH=$OLDPATH # Restore anaconda distribution if we took it out.
