@@ -26,9 +26,9 @@ if [[ $i == \[submodule* ]]; then
 
     # fetch the files
 
-    cd "${THIS_DIR}/${mpath}" && git checkout $mbranch && git pull
+    cd "${THIS_DIR}/${mpath}" && echo "git checkout $mbranch" &&  git checkout $mbranch && echo "git pull" && git pull
     if [[ $mbranch != "master" ]]; then
-        cd "${THIS_DIR}/${mpath}" && git fetch upstream && git rebase -p upstream/master
+        cd "${THIS_DIR}/${mpath}" && echo "git fetch upstream" && git fetch upstream && echo "git rebase -p upstream/master" && git rebase -p upstream/master
     fi
 fi
 done
