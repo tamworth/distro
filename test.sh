@@ -50,11 +50,11 @@ set -e
 
 if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
 then
-    $LUA -lcutorch -e "print('cutorch loaded succesfully')"
+    th -lcutorch -e "print('cutorch loaded succesfully')"
 
     if [ $(basename $LUA) = "luajit" ];
     then
-        $LUA -lcudnn -e "print('cudnn loaded succesfully')"
+        th -lcudnn -e "print('cudnn loaded succesfully')"
     fi
     th -lcutorch -e "cutorch.test()"
     th -lcunn  -e "nn.testcuda()"
