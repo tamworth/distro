@@ -77,7 +77,7 @@
 [submodule "extra/cudnn"]
 	path = extra/cudnn
 	url = https://github.com/borisfom/cudnn.torch.git
-        branch = master
+        branch = algo2
 [submodule "exe/trepl"]
 	path = exe/trepl
 	url = https://github.com/torch/trepl.git
