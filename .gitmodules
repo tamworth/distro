@@ -31,8 +31,8 @@
 	url = https://github.com/torch/cutorch.git
         branch = master
 [submodule "packages/lua-torch-torch7"]
-	path = pkg/torch
-	url = https://github.com/torch/torch7.git
+	path = packages/lua-torch-torch7
+	url = https://github.com/borisfom/torch7.git
         branch = debian
 [submodule "pkg/sundown"]
 	path = pkg/sundown
