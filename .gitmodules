@@ -30,8 +30,8 @@
 	path = extra/cutorch
 	url = https://github.com/borisfom/cutorch.git
         branch = master
-[submodule "pkg/torch"]
-	path = pkg/torch
+[submodule "packages/lua-torch-torch7"]
+	path = packages/lua-torch-torch7
 	url = https://github.com/borisfom/torch7.git
 [submodule "pkg/sundown"]
 	path = pkg/sundown
