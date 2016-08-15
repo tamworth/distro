@@ -6,8 +6,6 @@ BATCH_INSTALL=0
 THIS_DIR=$(cd $(dirname $0); pwd)
 PREFIX=${PREFIX:-"${THIS_DIR}/install"}
 TORCH_LUA_VERSION=${TORCH_LUA_VERSION:-"LUAJIT21"} # by default install LUAJIT21
-# default is empty arch list
-TORCH_CUDA_ARCH_LIST=
 
 while getopts 'bsh:' x; do
     case "$x" in
@@ -30,11 +28,11 @@ This script will install Torch and related, useful packages into $PREFIX.
 done
 
 
-# Scrub an anaconda install, if exists, from the PATH.
+# Scrub an anaconda/conda install, if exists, from the PATH.
 # It has a malformed MKL library (as of 1/17/2015)
 OLDPATH=$PATH
-if [[ $(echo $PATH | grep anaconda) ]]; then
-    export PATH=$(echo $PATH | tr ':' '\n' | grep -v "anaconda/bin" | grep -v "anaconda/lib" | grep -v "anaconda/include" | uniq | tr '\n' ':')
+if [[ $(echo $PATH | grep conda) ]]; then
+    export PATH=$(echo $PATH | tr ':' '\n' | grep -v "conda[2-9]\?/bin" | grep -v "conda[2-9]\?/lib" | grep -v "conda[2-9]\?/include" | uniq | tr '\n' ':')
 fi
 
 echo "Prefix set to $PREFIX"
@@ -64,6 +62,11 @@ cd ..
 
 # Check for a CUDA install (using nvcc instead of nvidia-smi for cross-platform compatibility)
 path_to_nvcc=$(which nvcc)
+if [ $? == 1 ]; then { # look for it in /usr/local
+  if [[ -f /usr/local/cuda/bin/nvcc ]]; then {
+    path_to_nvcc=/usr/local/cuda/bin/nvcc
+  } fi
+} fi
 
 # check if we are on mac and fix RPATH for local install
 path_to_install_name_tool=$(which install_name_tool 2>/dev/null)
@@ -123,11 +126,7 @@ cd ${THIS_DIR}/extra/nnx            && $PREFIX/bin/luarocks make nnx-0.1-1.rocks
 cd ${THIS_DIR}/exe/qtlua            && $PREFIX/bin/luarocks make rocks/qtlua-scm-1.rockspec
 cd ${THIS_DIR}/pkg/qttorch          && $PREFIX/bin/luarocks make rocks/qttorch-scm-1.rockspec
 cd ${THIS_DIR}/extra/threads        && $PREFIX/bin/luarocks make rocks/threads-scm-1.rockspec
-cd ${THIS_DIR}/extra/graphicsmagick && $PREFIX/bin/luarocks make graphicsmagick-1.scm-0.rockspec
 cd ${THIS_DIR}/extra/argcheck       && $PREFIX/bin/luarocks make rocks/argcheck-scm-1.rockspec
-cd ${THIS_DIR}/extra/audio          && $PREFIX/bin/luarocks make audio-0.1-0.rockspec
-cd ${THIS_DIR}/extra/fftw3          && $PREFIX/bin/luarocks make rocks/fftw3-scm-1.rockspec
-cd ${THIS_DIR}/extra/signal         && $PREFIX/bin/luarocks make rocks/signal-scm-1.rockspec
 
 # Optional CUDA packages
 if [ -x "$path_to_nvcc" ]

@@ -7,6 +7,7 @@ THIS_DIR=$(cd $(dirname $0); pwd)
 PREFIX=${PREFIX:-"${THIS_DIR}/install"}
 TH_INSTALL_PREFIX=${PREFIX}
 BUILD_DIR=${THIS_DIR}/build
+LMDB_LIBDIR=${LMDB_LIBDIR:-"/usr/lib/x86_64-linux-gnu"}
 
 TORCH_LUA_VERSION=${TORCH_LUA_VERION:-"LUAJIT21"} # by default install LUAJIT21
 
@@ -36,7 +37,7 @@ This script will install Torch and related, useful packages into $PREFIX.
             export IVERBOSE="--verbose"
             ;;
         n)
-            TORCH_LUA_VERSION="NATIVE"
+            TORCH_LUA_VERSION="SYSTEM_LUAJIT"
             ;;
         s)
             SKIP_RC=1
@@ -68,31 +69,20 @@ if [[ `uname` == "Darwin" ]]; then
     export CXX=clang++
 fi
 
-echo "Installing Lua version: ${TORCH_LUA_VERSION}"
+echo "Using Lua version: ${TORCH_LUA_VERSION}"
 
 mkdir -p ${PREFIX}
 mkdir -p ${BUILD_DIR}
 
 cd ${BUILD_DIR}
 
-echo "Configuring Lua version: ${TORCH_LUA_VERSION}"
-(cmake ${THIS_DIR} -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DCMAKE_BUILD_TYPE=Release -DWITH_${TORCH_LUA_VERSION}=ON  || exit 1)
-
-if [[ "$TORCH_LUA_VERSION" == "NATIVE" ]]; then
-# echo "Using NATIVE Lua version:"
-
-export LUAROCKS="luarocks --tree="$PREFIX/" $IVERBOSE"
-
-export LUA=luajit
-
-else
-
-echo "Installing Lua version: ${TORCH_LUA_VERSION}"
-# (cmake ${THIS_DIR} -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DCMAKE_BUILD_TYPE=Release -DWITH_${TORCH_LUA_VERSION}=ON  || exit 1)
+(cmake ${THIS_DIR} -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DCMAKE_BUILD_TYPE=Release -DWITH_${TORCH_LUA_VERSION}=ON || exit 1)
 (make 2>&1  || exit 1) && (make install 2>&1  || exit 1)
-cd ..
+
+cd ${THIS_DIR}
+
 export LUAROCKS="${PREFIX}/bin/luarocks --tree="${PREFIX}" $IVERBOSE"
-fi
+
 # Done installing LuaRocks
 
 echo "Using luarocks: ${LUAROCKS}"
@@ -177,33 +167,25 @@ cd ${THIS_DIR}/extra/nnx            && $LUAROCKS make nnx-0.1-1.rockspec || exit
 cd ${THIS_DIR}/exe/qtlua            && $LUAROCKS make rocks/qtlua-scm-1.rockspec || exit 1
 cd ${THIS_DIR}/pkg/qttorch          && $LUAROCKS make rocks/qttorch-scm-1.rockspec || exit 1
 cd ${THIS_DIR}/extra/threads        && $LUAROCKS make rocks/threads-scm-1.rockspec || exit 1
-cd ${THIS_DIR}/extra/graphicsmagick && $LUAROCKS make graphicsmagick-1.scm-0.rockspec || exit 1
 cd ${THIS_DIR}/extra/argcheck       && $LUAROCKS make rocks/argcheck-scm-1.rockspec || exit 1
-cd ${THIS_DIR}/extra/audio          && $LUAROCKS make audio-0.1-0.rockspec || exit 1
-cd ${THIS_DIR}/extra/fftw3          && $LUAROCKS make rocks/fftw3-scm-1.rockspec || exit 1
-cd ${THIS_DIR}/extra/signal         && $LUAROCKS make rocks/signal-scm-1.rockspec || exit 1
 
 #Support for Protobuf
 cd ${THIS_DIR}/extra/lua-pb         && $LUAROCKS make lua-pb-scm-0.rockspec || exit 1
 # Lua Wrapper for LMDB, latest from github (lightningmdb)
-cd ${THIS_DIR}/extra/lmdb           && $LUAROCKS make LMDB_INCDIR=/usr/include LMDB_LIBDIR=/usr/lib/x86_64-linux-gnu lightningmdb-scm-1.rockspec || exit 1
+cd ${THIS_DIR}/extra/lmdb           && $LUAROCKS make LMDB_INCDIR=/usr/include LMDB_LIBDIR="${LMDB_LIBDIR}" lightningmdb-scm-1.rockspec || exit 1
 cd ${THIS_DIR}/extra/totem          && $LUAROCKS make rocks/totem-0-0.rockspec || exit 1
 #HDF5 filesystem support
 cd ${THIS_DIR}/extra/hdf5           && $LUAROCKS make hdf5-0-0.rockspec || exit 1
-#NCCL (experimental) support
-cd ${THIS_DIR}/extra/nccl         && $LUAROCKS make nccl-scm-1.rockspec || exit 1
 
 if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
 then
-    echo "Found CUDA on your machine. Installing CUDA packages for ${CUDA_SELECT_NVCC_ARCH_TARGETS}"
-    cd ${THIS_DIR}/extra/cutorch  && $LUAROCKS  make CUDA_SELECT_NVCC_ARCH_TARGETS="${CUDA_SELECT_NVCC_ARCH_TARGETS}" rocks/cutorch-scm-1.rockspec || exit 1
-    cd ${THIS_DIR}/extra/cunn     && $LUAROCKS  make CUDA_SELECT_NVCC_ARCH_TARGETS="${CUDA_SELECT_NVCC_ARCH_TARGETS}" rocks/cunn-scm-1.rockspec    || exit 1
-fi
-
+    echo "Found CUDA on your machine. Installing CUDA packages for ${TORCH_CUDA_ARCH_LIST}"
+    cd ${THIS_DIR}/extra/cutorch  && $LUAROCKS  make rocks/cutorch-scm-1.rockspec || exit 1
+    cd ${THIS_DIR}/extra/cunn     && $LUAROCKS  make rocks/cunn-scm-1.rockspec    || exit 1
 # Optional CUDA packages
-if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
-then
     echo "Found CUDA on your machine. Installing optional CUDA packages"
+#NCCL (experimental) support
+    cd ${THIS_DIR}/extra/nccl         && $LUAROCKS make nccl-scm-1.rockspec || exit 1
     cd ${THIS_DIR}/extra/cudnn   && $LUAROCKS make cudnn-scm-1.rockspec || exit 1
     cd ${THIS_DIR}/extra/cunnx   && $LUAROCKS make rocks/cunnx-scm-1.rockspec || exit 1
     # cuda-convnet2

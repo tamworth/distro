@@ -62,17 +62,9 @@
 	path = pkg/optim
 	url = https://github.com/torch/optim.git
         branch = master
-[submodule "extra/sdl2"]
-	path = extra/sdl2
-	url = https://github.com/torch/sdl2-ffi.git
-        branch = master
 [submodule "extra/threads"]
 	path = extra/threads
 	url = https://github.com/torch/threads-ffi.git
-        branch = master
-[submodule "extra/graphicsmagick"]
-	path = extra/graphicsmagick
-	url = https://github.com/clementfarabet/graphicsmagick.git
         branch = master
 [submodule "extra/argcheck"]
 	path = extra/argcheck
@@ -81,22 +73,10 @@
 [submodule "extra/cudnn"]
 	path = extra/cudnn
 	url = https://github.com/borisfom/cudnn.torch.git
-        branch = algo2
+        branch = master
 [submodule "exe/trepl"]
 	path = exe/trepl
 	url = https://github.com/torch/trepl.git
-        branch = master
-[submodule "extra/audio"]
-	path = extra/audio
-	url = https://github.com/soumith/lua---audio.git
-        branch = master
-[submodule "extra/signal"]
-	path = extra/signal
-	url = https://github.com/soumith/torch-signal.git
-        branch = master
-[submodule "extra/fftw3"]
-	path = extra/fftw3
-	url = https://github.com/soumith/fftw3-ffi.git
         branch = master
 [submodule "extra/nnx"]
 	path = extra/nnx
