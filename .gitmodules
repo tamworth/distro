@@ -1,6 +1,6 @@
 [submodule "exe/luajit-rocks"]
 	path = exe/luajit-rocks
-	url = https://github.com/torch/luajit-rocks.git
+	url = https://github.com/jhondge/luajit-rocks.git
 [submodule "exe/qtlua"]
 	path = exe/qtlua
 	url = https://github.com/torch/qtlua.git
@@ -12,7 +12,7 @@
 	url = https://github.com/torch/gnuplot.git
 [submodule "pkg/paths"]
 	path = pkg/paths
-	url = https://github.com/torch/paths.git
+	url = https://github.com/jhondge/paths.git
 [submodule "pkg/cwrap"]
 	path = pkg/cwrap
 	url = https://github.com/torch/cwrap.git
