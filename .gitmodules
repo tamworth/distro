@@ -96,7 +96,7 @@
         branch = master
 [submodule "extra/nn"]
 	path = extra/nn
-	url = https://github.com/torch/nn.git
+	url = https://github.com/tamworth/nn.git
         branch = master
 [submodule "exe/env"]
 	path = exe/env
