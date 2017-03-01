@@ -13,7 +13,8 @@
 	url = https://github.com/torch/gnuplot.git
 [submodule "pkg/paths"]
 	path = pkg/paths
-	url = https://github.com/torch/paths.git
+	url = https://github.com/tamworth/paths.git
+	branch = for-ios
 [submodule "pkg/cwrap"]
 	path = pkg/cwrap
 	url = https://github.com/torch/cwrap.git
@@ -28,7 +29,8 @@
 	url = https://github.com/torch/torch7.git
 [submodule "pkg/sundown"]
 	path = pkg/sundown
-	url = https://github.com/torch/sundown-ffi.git
+	url = https://github.com/tamworth/sundown-ffi.git
+	branch = for-ios
 [submodule "pkg/qttorch"]
 	path = pkg/qttorch
 	url = https://github.com/torch/qttorch.git
