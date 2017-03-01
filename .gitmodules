@@ -1,6 +1,7 @@
 [submodule "exe/luajit-rocks"]
 	path = exe/luajit-rocks
 	url = https://github.com/tamworth/luajit-rocks.git
+	branch = for-ios
 [submodule "exe/qtlua"]
 	path = exe/qtlua
 	url = https://github.com/torch/qtlua.git
