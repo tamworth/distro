@@ -49,7 +49,8 @@
 	url = https://github.com/torch/sdl2-ffi.git
 [submodule "extra/threads"]
 	path = extra/threads
-	url = https://github.com/torch/threads-ffi.git
+	url = https://github.com/tamworth/threads.git
+	branch = for-ios
 [submodule "extra/graphicsmagick"]
 	path = extra/graphicsmagick
 	url = https://github.com/clementfarabet/graphicsmagick.git
