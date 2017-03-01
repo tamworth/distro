@@ -76,7 +76,8 @@
 	url = https://github.com/clementfarabet/lua---nnx.git
 [submodule "extra/nn"]
 	path = extra/nn
-	url = https://github.com/torch/nn.git
+	url = https://github.com/tamworth/nn.git
+	branch = for-ios
 [submodule "exe/env"]
 	path = exe/env
 	url = https://github.com/torch/env.git
@@ -103,4 +104,5 @@
 	url = https://github.com/stevedonovan/Penlight.git
 [submodule "extra/lua-cjson"]
 	path = extra/lua-cjson
-	url = https://github.com/mpx/lua-cjson
+	url = https://github.com/tamworth/lua-cjson
+	branch = for-ios
